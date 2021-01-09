@@ -35,7 +35,7 @@ namespace BinarySearchTree.SymbolTables
 
         public bool TryGet(TKey key, out TValue? value)
         {
-            throw new NotImplementedException();
+            return TryGet(_root, key, out value);
         }
 
         public void Delete(TKey key)
@@ -96,6 +96,31 @@ namespace BinarySearchTree.SymbolTables
         public TKey Max()
         {
             throw new NotImplementedException();
+        }
+
+        private static bool TryGet(Node? node, TKey key, out TValue? value)
+        {
+            while (true)
+            {
+                if (node is null)
+                {
+                    value = default;
+                    return false;
+                }
+
+                switch (node.Key.CompareTo(key))
+                {
+                    case < 0:
+                        node = node.Right;
+                        continue;
+                    case > 0:
+                        node = node.Left;
+                        continue;
+                    case 0:
+                        value = node.Value;
+                        return true;
+                }
+            }
         }
 
         // TODO: Add Left and/or Right nodes to constructor if they can be initialized at the record creation moment

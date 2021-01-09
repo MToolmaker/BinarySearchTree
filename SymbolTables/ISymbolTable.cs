@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace BinarySearchTree.SymbolTables
 {
     [PublicAPI]
-    public interface ISymbolTable<TKey, TValue> 
+    public interface ISymbolTable<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>>
         where TKey : IEquatable<TKey>
     {
         void Add(TKey key, [NotNull] TValue value);

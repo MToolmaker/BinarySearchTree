@@ -135,7 +135,8 @@ namespace BinarySearchTree.SymbolTables
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             var pairsOrderedByKey = new Queue<KeyValuePair<TKey, TValue>>();
-            return enumerator;
+            TraverseInorder(_root, pairsOrderedByKey);
+            return pairsOrderedByKey.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -143,21 +144,12 @@ namespace BinarySearchTree.SymbolTables
             return GetEnumerator();
         }
 
-        private IEnumerator<KeyValuePair<TKey,TValue>?> GetEnumerator(Node? node)
+        private static void TraverseInorder(Node? node, Queue<KeyValuePair<TKey,TValue>> queue)
         {
-            if (node is null) yield return new KeyValuePair<TKey, TValue>();
-            switch (node.Key.CompareTo(key))
-            {
-                case < 0:
-                    node.Right = Add(node.Right, key, value);
-                    return node;
-                case > 0:
-                    node.Left = Add(node.Left, key, value);
-                    return node;
-                case 0:
-                    node.Value = value;
-                    return node;
-            }
+            if (node is null) return;
+            TraverseInorder(node.Left, queue);
+            queue.Enqueue(KeyValuePair.Create(node.Key, node.Value));
+            TraverseInorder(node.Right, queue);
         }
     }
 }

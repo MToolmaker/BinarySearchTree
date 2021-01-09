@@ -61,7 +61,7 @@ namespace BinarySearchTree.SymbolTables
 
         public IEnumerable<TKey> Keys()
         {
-            throw new NotImplementedException();
+            return OrderedKeyValuePairs().Select(pair => pair.Key);
         }
 
         public IEnumerable<TValue> Values()
@@ -134,9 +134,14 @@ namespace BinarySearchTree.SymbolTables
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
+            return OrderedKeyValuePairs().GetEnumerator();
+        }
+
+        private Queue<KeyValuePair<TKey, TValue>> OrderedKeyValuePairs()
+        {
             var pairsOrderedByKey = new Queue<KeyValuePair<TKey, TValue>>();
             TraverseInorder(_root, pairsOrderedByKey);
-            return pairsOrderedByKey.GetEnumerator();
+            return pairsOrderedByKey;
         }
 
         IEnumerator IEnumerable.GetEnumerator()

@@ -32,5 +32,11 @@ namespace BinarySearchTreeTests
         {
             for (var number = 1; number <= 3; number++) Assert.True(NumberToString.Contains(number));
         }
+        
+        [Test]
+        public void KeysOperationTest()
+        {
+            foreach (var number in NumberToString.Keys()) Assert.True(ExpectedNumberToString.ContainsKey(number));
+        }
     }
 }

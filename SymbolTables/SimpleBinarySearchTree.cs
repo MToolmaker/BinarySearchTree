@@ -74,9 +74,23 @@ namespace BinarySearchTree.SymbolTables
 
         public bool TryGetMin(out TKey? min)
         {
-            throw new NotImplementedException();
+            var root = _root;
+            if (root is null)
+            {
+                min = default;
+                return false;
+            }
+
+            min = GetMin(root);
+            return true;
         }
 
+        private static TKey GetMin(Node node)
+        {
+            while (node.Left is not null) node = node.Left;
+            return node.Key;
+        }
+        
         public bool TryGetMax(out TKey? min)
         {
             throw new NotImplementedException();

@@ -68,5 +68,12 @@ namespace BinarySearchTreeTests
         {
             Assert.True(!NumberToString.IsEmpty());
         }
+        
+        [Test]
+        public void TryGetMinOperationTest()
+        {
+            Assert.True(NumberToString.TryGetMin(out var min));
+            Assert.AreEqual(1, min);
+        }
     }
 }

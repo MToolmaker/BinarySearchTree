@@ -86,7 +86,7 @@ namespace BinarySearchTree.SymbolTables
 
         public IOrderedEnumerable<TKey> OrderedKeys()
         {
-            throw new NotImplementedException();
+            return Keys().OrderBy(_ => 1);
         }
 
         public TKey Min()

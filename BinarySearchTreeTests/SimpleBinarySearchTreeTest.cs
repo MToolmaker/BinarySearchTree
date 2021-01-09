@@ -38,5 +38,16 @@ namespace BinarySearchTreeTests
         {
             foreach (var number in NumberToString.Keys()) Assert.True(ExpectedNumberToString.ContainsKey(number));
         }
+        
+        [Test]
+        public void OrderedKeysOperationTest()
+        {
+            var previousKey = -1;
+            foreach (var currentKey in NumberToString.OrderedKeys())
+            {
+                Assert.True(previousKey <= currentKey);
+                previousKey = currentKey;
+            }
+        }
     }
 }

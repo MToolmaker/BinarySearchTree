@@ -74,7 +74,7 @@ namespace BinarySearchTree.SymbolTables
 
         public IEnumerable<TValue> Values()
         {
-            throw new NotImplementedException();
+            return OrderedKeyValuePairs().Select(pair => pair.Value);
         }
 
         public TKey Floor(TKey key)

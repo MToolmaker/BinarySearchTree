@@ -55,5 +55,11 @@ namespace BinarySearchTreeTests
         {
             Assert.AreEqual(ExpectedNumberToString.Count, NumberToString.Size());
         }
+
+        [Test]
+        public void ValuesOperationTest()
+        {
+            foreach (var @string in NumberToString.Values()) Assert.True(ExpectedNumberToString.ContainsValue(@string));
+        }
     }
 }

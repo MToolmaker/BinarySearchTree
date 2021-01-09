@@ -6,6 +6,9 @@ namespace BinarySearchTreeTests
 {
     public class SimpleBinarySearchTreeTest
     {
+        private readonly SimpleBinarySearchTree<int, string> _numberToString = new() {{3, "A"}, {1, "B"}, {2, "C"}};
+        private readonly Dictionary<int, string> _expectedNumberToString = new() {{3, "A"}, {1, "B"}, {2, "C"}};
+        
         [SetUp]
         public void Setup()
         {
@@ -14,12 +17,10 @@ namespace BinarySearchTreeTests
         [Test]
         public void TryGetOperationTest()
         {
-            var numberToString = FillSimpleBinarySearchTreeToTest();
-            var expectedNumberToString = FillExpectedMap();
             for (var number = 1; number <= 3; number++)
             {
-                Assert.True(expectedNumberToString.TryGetValue(number, out var expected));
-                Assert.True(numberToString.TryGet(number, out var actual));
+                Assert.True(_expectedNumberToString.TryGetValue(number, out var expected));
+                Assert.True(_numberToString.TryGet(number, out var actual));
                 Assert.AreEqual(expected, actual);
             }
         }
@@ -27,21 +28,7 @@ namespace BinarySearchTreeTests
         [Test]
         public void ContainsOperationTest()
         {
-            var numberToString = FillSimpleBinarySearchTreeToTest();
-            for (var number = 1; number <= 3; number++)
-            {
-                Assert.True(numberToString.Contains(number));
-            }
-        }
-
-        private static SimpleBinarySearchTree<int, string> FillSimpleBinarySearchTreeToTest()
-        {
-            return new() {{3, "A"}, {1, "B"}, {2, "C"}};
-        }
-
-        private static Dictionary<int, string> FillExpectedMap()
-        {
-            return new() {{3, "A"}, {1, "B"}, {2, "C"}};
+            for (var number = 1; number <= 3; number++) Assert.True(_numberToString.Contains(number));
         }
     }
 }

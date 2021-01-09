@@ -124,14 +124,6 @@ namespace BinarySearchTree.SymbolTables
             }
         }
 
-        // TODO: Add Left and/or Right nodes to constructor if they can be initialized at the record creation moment
-        private record Node (TKey Key, TValue Value)
-        {
-            public Node? Left { get; set; }
-            public Node? Right { get; set; }
-            public TValue Value { get; set; } = Value;
-        }
-
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             return OrderedKeyValuePairs().GetEnumerator();
@@ -157,6 +149,15 @@ namespace BinarySearchTree.SymbolTables
             // ReSharper disable once TailRecursiveCall
             // Let's stick to symmetric recursive inorder traversal for now
             TraverseInorder(node.Right, queue);
+        }
+        
+        
+        // TODO: Add Left and/or Right nodes to constructor if they can be initialized at the record creation moment
+        private record Node (TKey Key, TValue Value)
+        {
+            public Node? Left { get; set; }
+            public Node? Right { get; set; }
+            public TValue Value { get; set; } = Value;
         }
     }
 }

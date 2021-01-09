@@ -46,7 +46,7 @@ namespace BinarySearchTree.SymbolTables
 
         public bool Contains(TKey key)
         {
-            throw new NotImplementedException();
+            return TryGet(key, out _);
         }
 
         public bool IsEmpty()

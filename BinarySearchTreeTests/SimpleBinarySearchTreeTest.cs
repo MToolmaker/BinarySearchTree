@@ -12,7 +12,7 @@ namespace BinarySearchTreeTests
         }
 
         [Test]
-        public void SimpleTest()
+        public void TryGetOperationTest()
         {
             var numberToString = FillSimpleBinarySearchTreeToTest();
             var expectedNumberToString = FillExpectedMap();
@@ -21,6 +21,16 @@ namespace BinarySearchTreeTests
                 Assert.True(expectedNumberToString.TryGetValue(number, out var expected));
                 Assert.True(numberToString.TryGet(number, out var actual));
                 Assert.AreEqual(expected, actual);
+            }
+        }
+        
+        [Test]
+        public void ContainsOperationTest()
+        {
+            var numberToString = FillSimpleBinarySearchTreeToTest();
+            for (var number = 1; number <= 3; number++)
+            {
+                Assert.True(numberToString.Contains(number));
             }
         }
 

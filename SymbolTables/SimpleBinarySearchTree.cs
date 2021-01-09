@@ -52,12 +52,12 @@ namespace BinarySearchTree.SymbolTables
             return OrderedKeyValuePairs().Select(pair => pair.Value);
         }
 
-        public bool TryGetFloor(out TKey? min)
+        public bool TryGetFloor(out TKey? floor)
         {
             throw new NotImplementedException();
         }
 
-        public bool TryGetCeiling(out TKey? min)
+        public bool TryGetCeiling(out TKey? ceiling)
         {
             throw new NotImplementedException();
         }
@@ -91,16 +91,16 @@ namespace BinarySearchTree.SymbolTables
             return node.Key;
         }
         
-        public bool TryGetMax(out TKey? min)
+        public bool TryGetMax(out TKey? max)
         {
             var root = _root;
             if (root is null)
             {
-                min = default;
+                max = default;
                 return false;
             }
 
-            min = GetMax(root);
+            max = GetMax(root);
             return true;
         }
 

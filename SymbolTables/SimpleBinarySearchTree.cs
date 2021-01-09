@@ -149,6 +149,8 @@ namespace BinarySearchTree.SymbolTables
             if (node is null) return;
             TraverseInorder(node.Left, queue);
             queue.Enqueue(KeyValuePair.Create(node.Key, node.Value));
+            // ReSharper disable once TailRecursiveCall
+            // Let's stick to symmetric recursive inorder traversal for now
             TraverseInorder(node.Right, queue);
         }
     }

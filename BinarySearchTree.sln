@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearchTree", "BinarySearchTree.csproj", "{80B3C38B-6956-4949-A361-E10A37583D71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearchTreeTests", "BinarySearchTreeTests\BinarySearchTreeTests.csproj", "{F4375858-3D2F-419F-A0C1-8EF30F364430}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{80B3C38B-6956-4949-A361-E10A37583D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80B3C38B-6956-4949-A361-E10A37583D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80B3C38B-6956-4949-A361-E10A37583D71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4375858-3D2F-419F-A0C1-8EF30F364430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4375858-3D2F-419F-A0C1-8EF30F364430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4375858-3D2F-419F-A0C1-8EF30F364430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4375858-3D2F-419F-A0C1-8EF30F364430}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -10,4 +10,16 @@
       <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="BinarySearchTreeTests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="BinarySearchTreeTests\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="BinarySearchTreeTests\**" />
+    </ItemGroup>
+
 </Project>

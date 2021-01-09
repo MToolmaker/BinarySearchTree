@@ -8,7 +8,7 @@ namespace BinarySearchTree.SymbolTables
     public interface ISymbolTable<TKey, TValue> 
         where TKey : IEquatable<TKey>
     {
-        void Put(TKey key, [NotNull] TValue value);
+        void Add(TKey key, [NotNull] TValue value);
         
         bool TryGet(TKey key, out TValue? value);
 

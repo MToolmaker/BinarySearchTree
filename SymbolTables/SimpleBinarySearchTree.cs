@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -11,21 +12,21 @@ namespace BinarySearchTree.SymbolTables
     {
         private Node? _root;
 
-        public void Put(TKey key, TValue value)
+        public void Add(TKey key, TValue value)
         {
-            _root = Put(_root, key, value);
+            _root = Add(_root, key, value);
         }
         
-        private static Node Put(Node? node, TKey key, TValue value)
+        private static Node Add(Node? node, TKey key, TValue value)
         {
             if (node is null) return new Node(key, value);
             switch (node.Key.CompareTo(key))
             {
                 case < 0:
-                    node.Right = Put(node.Right, key, value);
+                    node.Right = Add(node.Right, key, value);
                     return node;
                 case > 0:
-                    node.Left = Put(node.Left, key, value);
+                    node.Left = Add(node.Left, key, value);
                     return node;
                 case 0:
                     node.Value = value;
@@ -129,6 +130,34 @@ namespace BinarySearchTree.SymbolTables
             public Node? Left { get; set; }
             public Node? Right { get; set; }
             public TValue Value { get; set; } = Value;
+        }
+
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
+        {
+            var pairsOrderedByKey = new Queue<KeyValuePair<TKey, TValue>>();
+            return enumerator;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        private IEnumerator<KeyValuePair<TKey,TValue>?> GetEnumerator(Node? node)
+        {
+            if (node is null) yield return new KeyValuePair<TKey, TValue>();
+            switch (node.Key.CompareTo(key))
+            {
+                case < 0:
+                    node.Right = Add(node.Right, key, value);
+                    return node;
+                case > 0:
+                    node.Left = Add(node.Left, key, value);
+                    return node;
+                case 0:
+                    node.Value = value;
+                    return node;
+            }
         }
     }
 }

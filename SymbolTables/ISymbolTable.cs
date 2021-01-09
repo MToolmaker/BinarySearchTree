@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace BinarySearchTree.SymbolTables
 {
     [PublicAPI]
-    public interface IUnorderedSymbolTable<TKey, TValue> 
+    public interface ISymbolTable<TKey, TValue> 
         where TKey : struct, IEquatable<TKey>
     {
         void Put(TKey key, [NotNull] TValue value);

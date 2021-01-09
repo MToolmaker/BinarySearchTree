@@ -9,9 +9,31 @@ namespace BinarySearchTree.SymbolTables
     public class SimpleBinarySearchTree<TKey, TValue> : IOrderedSymbolTable<TKey, TValue>
         where TKey :  IComparable<TKey>, IEquatable<TKey>
     {
+        private Node? _root;
+        
         public void Put(TKey key, TValue value)
         {
-            throw new NotImplementedException();
+            _root = Put(_root, key, value);
+        }
+        
+        private static Node Put(Node? node, TKey key, TValue value)
+        {
+            while (true)
+            {
+                if (node is null) return new Node(key, value);
+                switch (node.Key.CompareTo(key))
+                {
+                    case < 0:
+                        node = node.Right;
+                        continue;
+                    case > 0:
+                        node = node.Left;
+                        continue;
+                    case 0:
+                        node.Value = value;
+                        return node;
+                }
+            }
         }
 
         public bool TryGet(TKey key, out TValue value)
@@ -79,6 +101,12 @@ namespace BinarySearchTree.SymbolTables
             throw new NotImplementedException();
         }
 
-        private record Node (TKey Key, TValue Value, Node? Left, Node? Right);
+        // TODO: Add Left and/or Right nodes to constructor if they can be initialized at the record creation moment
+        private record Node (TKey Key, TValue Value)
+        {
+            public Node? Left { get; set; }
+            public Node? Right { get; set; }
+            public TValue Value { get; set; } = Value;
+        };
     }
 }

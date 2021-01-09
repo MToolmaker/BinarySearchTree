@@ -87,7 +87,7 @@ namespace BinarySearchTree.SymbolTables
 
         private static TKey GetMin(Node node)
         {
-            while (node.Left is not null) node = node.Left;
+            while (node.Left is { } left) node = left;
             return node.Key;
         }
         
@@ -106,7 +106,7 @@ namespace BinarySearchTree.SymbolTables
 
         private static TKey GetMax(Node node)
         {
-            while (node.Right is not null) node = node.Right;
+            while (node.Right is { } right) node = right;
             return node.Key;
         }
 

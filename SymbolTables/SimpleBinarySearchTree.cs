@@ -16,26 +16,6 @@ namespace BinarySearchTree.SymbolTables
         {
             _root = Add(_root, key, value);
         }
-        
-        private static Node Add(Node? node, TKey key, TValue value)
-        {
-            if (node is null) return new Node(key, value);
-            switch (node.Key.CompareTo(key))
-            {
-                case < 0:
-                    node.Right = Add(node.Right, key, value);
-                    break;
-                case > 0:
-                    node.Left = Add(node.Left, key, value);
-                    break;
-                case 0:
-                    node.Value = value;
-                    break;
-            }
-
-            node.SubtreeSize = 1 + Size(node.Left) + Size(node.Right);
-            return node;
-        }
 
         public bool TryGet(TKey key, out TValue? value)
         {
@@ -60,11 +40,6 @@ namespace BinarySearchTree.SymbolTables
         public int Size()
         {
             return Size(_root);
-        }
-
-        private static int Size(Node? node)
-        {
-            return node?.SubtreeSize ?? 0;
         }
 
         public IEnumerable<TKey> Keys()
@@ -107,6 +82,41 @@ namespace BinarySearchTree.SymbolTables
             throw new NotImplementedException();
         }
 
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
+        {
+            return OrderedKeyValuePairs().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        private static Node Add(Node? node, TKey key, TValue value)
+        {
+            if (node is null) return new Node(key, value);
+            switch (node.Key.CompareTo(key))
+            {
+                case < 0:
+                    node.Right = Add(node.Right, key, value);
+                    break;
+                case > 0:
+                    node.Left = Add(node.Left, key, value);
+                    break;
+                case 0:
+                    node.Value = value;
+                    break;
+            }
+
+            node.SubtreeSize = 1 + Size(node.Left) + Size(node.Right);
+            return node;
+        }
+
+        private static int Size(Node? node)
+        {
+            return node?.SubtreeSize ?? 0;
+        }
+
         private static bool TryGet(Node? node, TKey key, out TValue? value)
         {
             while (true)
@@ -132,11 +142,6 @@ namespace BinarySearchTree.SymbolTables
             }
         }
 
-        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-        {
-            return OrderedKeyValuePairs().GetEnumerator();
-        }
-
         private Queue<KeyValuePair<TKey, TValue>> OrderedKeyValuePairs()
         {
             var pairsOrderedByKey = new Queue<KeyValuePair<TKey, TValue>>();
@@ -144,12 +149,7 @@ namespace BinarySearchTree.SymbolTables
             return pairsOrderedByKey;
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        private static void TraverseInorder(Node? node, Queue<KeyValuePair<TKey,TValue>> queue)
+        private static void TraverseInorder(Node? node, Queue<KeyValuePair<TKey, TValue>> queue)
         {
             if (node is null) return;
             TraverseInorder(node.Left, queue);
@@ -158,8 +158,8 @@ namespace BinarySearchTree.SymbolTables
             // Let's stick to symmetric recursive inorder traversal for now
             TraverseInorder(node.Right, queue);
         }
-        
-        
+
+
         // TODO: Add Left and/or Right nodes to constructor if they can be initialized at the record creation moment
         private record Node (TKey Key, TValue Value)
         {

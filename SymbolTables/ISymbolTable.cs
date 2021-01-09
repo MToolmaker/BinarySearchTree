@@ -6,7 +6,7 @@ namespace BinarySearchTree.SymbolTables
 {
     [PublicAPI]
     public interface ISymbolTable<TKey, TValue> 
-        where TKey : struct, IEquatable<TKey>
+        where TKey : IEquatable<TKey>
     {
         void Put(TKey key, [NotNull] TValue value);
         

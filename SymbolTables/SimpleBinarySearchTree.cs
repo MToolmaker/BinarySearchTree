@@ -18,21 +18,18 @@ namespace BinarySearchTree.SymbolTables
         
         private static Node Put(Node? node, TKey key, TValue value)
         {
-            while (true)
+            if (node is null) return new Node(key, value);
+            switch (node.Key.CompareTo(key))
             {
-                if (node is null) return new Node(key, value);
-                switch (node.Key.CompareTo(key))
-                {
-                    case < 0:
-                        node = node.Right;
-                        continue;
-                    case > 0:
-                        node = node.Left;
-                        continue;
-                    case 0:
-                        node.Value = value;
-                        return node;
-                }
+                case < 0:
+                    node.Right = Put(node.Right, key, value);
+                    return node;
+                case > 0:
+                    node.Left = Put(node.Left, key, value);
+                    return node;
+                case 0:
+                    node.Value = value;
+                    return node;
             }
         }
 

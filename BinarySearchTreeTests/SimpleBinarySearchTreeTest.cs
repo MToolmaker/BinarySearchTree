@@ -6,8 +6,10 @@ namespace BinarySearchTreeTests
 {
     public class SimpleBinarySearchTreeTest
     {
-        private readonly SimpleBinarySearchTree<int, string> _numberToString = new() {{3, "A"}, {1, "B"}, {2, "C"}};
-        private readonly Dictionary<int, string> _expectedNumberToString = new() {{3, "A"}, {1, "B"}, {2, "C"}};
+        private static readonly SimpleBinarySearchTree<int, string> NumberToString =
+            new() {{3, "A"}, {1, "B"}, {2, "C"}};
+        private static readonly Dictionary<int, string> ExpectedNumberToString =
+            new() {{3, "A"}, {1, "B"}, {2, "C"}};
         
         [SetUp]
         public void Setup()
@@ -19,8 +21,8 @@ namespace BinarySearchTreeTests
         {
             for (var number = 1; number <= 3; number++)
             {
-                Assert.True(_expectedNumberToString.TryGetValue(number, out var expected));
-                Assert.True(_numberToString.TryGet(number, out var actual));
+                Assert.True(ExpectedNumberToString.TryGetValue(number, out var expected));
+                Assert.True(NumberToString.TryGet(number, out var actual));
                 Assert.AreEqual(expected, actual);
             }
         }
@@ -28,7 +30,7 @@ namespace BinarySearchTreeTests
         [Test]
         public void ContainsOperationTest()
         {
-            for (var number = 1; number <= 3; number++) Assert.True(_numberToString.Contains(number));
+            for (var number = 1; number <= 3; number++) Assert.True(NumberToString.Contains(number));
         }
     }
 }

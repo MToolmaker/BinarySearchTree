@@ -10,7 +10,7 @@ namespace BinarySearchTree.SymbolTables
     {
         void Put(TKey key, [NotNull] TValue value);
         
-        bool TryGet(TKey key, [CanBeNull] out TValue value);
+        bool TryGet(TKey key, out TValue? value);
 
         void Delete(TKey key);
 

@@ -36,7 +36,7 @@ namespace BinarySearchTree.SymbolTables
             }
         }
 
-        public bool TryGet(TKey key, out TValue value)
+        public bool TryGet(TKey key, out TValue? value)
         {
             throw new NotImplementedException();
         }

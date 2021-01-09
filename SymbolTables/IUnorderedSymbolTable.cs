@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace BinarySearchTree.SymbolTable
+namespace BinarySearchTree.SymbolTables
 {
     [PublicAPI]
     public interface IUnorderedSymbolTable<TKey, TValue> 

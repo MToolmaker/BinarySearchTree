@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 
 namespace BinarySearchTree.SymbolTables
 {
     [PublicAPI]
-    public class SimpleBinarySearchTree<TKey, TValue> : ISymbolTable<TKey, TValue>
-        where TKey : struct, IEquatable<TKey>
+    public class SimpleBinarySearchTree<TKey, TValue> : IOrderedSymbolTable<TKey, TValue>
+        where TKey :  IComparable<TKey>, IEquatable<TKey>
     {
         public void Put(TKey key, TValue value)
         {
@@ -47,5 +48,37 @@ namespace BinarySearchTree.SymbolTables
         {
             throw new NotImplementedException();
         }
+
+        public TKey Floor(TKey key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TKey Ceiling(TKey key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Rank(TKey key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IOrderedEnumerable<TKey> OrderedKeys()
+        {
+            throw new NotImplementedException();
+        }
+
+        public TKey Min()
+        {
+            throw new NotImplementedException();
+        }
+
+        public TKey Max()
+        {
+            throw new NotImplementedException();
+        }
+
+        private record Node (TKey Key, TValue Value, Node? Left, Node? Right);
     }
 }

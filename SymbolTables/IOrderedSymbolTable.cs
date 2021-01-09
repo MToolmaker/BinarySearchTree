@@ -8,16 +8,16 @@ namespace BinarySearchTree.SymbolTables
     public interface IOrderedSymbolTable<TKey, TValue> : ISymbolTable<TKey, TValue>
         where TKey : IComparable<TKey>, IEquatable<TKey>
     {
-        public TKey Floor(TKey key);
+        public bool TryGetFloor(out TKey min);
 
-        public TKey Ceiling(TKey key);
+        public bool TryGetCeiling(out TKey min);
 
         public int Rank(TKey key);
 
         public IOrderedEnumerable<TKey> OrderedKeys();
         
-        public TKey Min();
+        public bool TryGetMin(out TKey min);
         
-        public TKey Max();
+        public bool TryGetMax(out TKey min);
     }
 }

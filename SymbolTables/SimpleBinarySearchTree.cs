@@ -93,7 +93,21 @@ namespace BinarySearchTree.SymbolTables
         
         public bool TryGetMax(out TKey? min)
         {
-            throw new NotImplementedException();
+            var root = _root;
+            if (root is null)
+            {
+                min = default;
+                return false;
+            }
+
+            min = GetMax(root);
+            return true;
+        }
+
+        private static TKey GetMax(Node node)
+        {
+            while (node.Right is not null) node = node.Right;
+            return node.Key;
         }
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()

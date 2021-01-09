@@ -75,5 +75,12 @@ namespace BinarySearchTreeTests
             Assert.True(NumberToString.TryGetMin(out var min));
             Assert.AreEqual(1, min);
         }
+        
+        [Test]
+        public void TryGetMaxOperationTest()
+        {
+            Assert.True(NumberToString.TryGetMax(out var max));
+            Assert.AreEqual(3, max);
+        }
     }
 }

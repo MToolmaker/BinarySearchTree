@@ -52,12 +52,12 @@ namespace BinarySearchTree.SymbolTables
             return OrderedKeyValuePairs().Select(pair => pair.Value);
         }
 
-        public bool TryGetFloor(out TKey? floor)
+        public bool TryGetFloor(TKey key, out TKey? floor)
         {
             throw new NotImplementedException();
         }
 
-        public bool TryGetCeiling(out TKey? ceiling)
+        public bool TryGetCeiling(TKey key, out TKey? ceiling)
         {
             throw new NotImplementedException();
         }

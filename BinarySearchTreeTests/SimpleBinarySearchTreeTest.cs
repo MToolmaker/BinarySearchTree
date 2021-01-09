@@ -62,5 +62,11 @@ namespace BinarySearchTreeTests
         {
             foreach (var @string in NumberToString.Values()) Assert.True(ExpectedNumberToString.ContainsValue(@string));
         }
+
+        [Test]
+        public void EmptyOperationTest()
+        {
+            Assert.True(!NumberToString.IsEmpty());
+        }
     }
 }

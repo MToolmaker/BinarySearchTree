@@ -34,7 +34,7 @@ namespace BinarySearchTree.SymbolTables
 
         public bool IsEmpty()
         {
-            throw new NotImplementedException();
+            return Size() == 0;
         }
 
         public int Size()

@@ -7,10 +7,10 @@ namespace BinarySearchTree.SymbolTables
 {
     [PublicAPI]
     public class SimpleBinarySearchTree<TKey, TValue> : IOrderedSymbolTable<TKey, TValue>
-        where TKey :  IComparable<TKey>, IEquatable<TKey>
+        where TKey : IComparable<TKey>, IEquatable<TKey>
     {
         private Node? _root;
-        
+
         public void Put(TKey key, TValue value)
         {
             _root = Put(_root, key, value);
@@ -107,6 +107,6 @@ namespace BinarySearchTree.SymbolTables
             public Node? Left { get; set; }
             public Node? Right { get; set; }
             public TValue Value { get; set; } = Value;
-        };
+        }
     }
 }

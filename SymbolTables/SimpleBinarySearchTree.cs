@@ -24,14 +24,17 @@ namespace BinarySearchTree.SymbolTables
             {
                 case < 0:
                     node.Right = Add(node.Right, key, value);
-                    return node;
+                    break;
                 case > 0:
                     node.Left = Add(node.Left, key, value);
-                    return node;
+                    break;
                 case 0:
                     node.Value = value;
-                    return node;
+                    break;
             }
+
+            node.SubtreeSize = 1 + Size(node.Left) + Size(node.Right);
+            return node;
         }
 
         public bool TryGet(TKey key, out TValue? value)
@@ -56,7 +59,12 @@ namespace BinarySearchTree.SymbolTables
 
         public int Size()
         {
-            throw new NotImplementedException();
+            return Size(_root);
+        }
+
+        private static int Size(Node? node)
+        {
+            return node?.SubtreeSize ?? 0;
         }
 
         public IEnumerable<TKey> Keys()
@@ -158,6 +166,7 @@ namespace BinarySearchTree.SymbolTables
             public Node? Left { get; set; }
             public Node? Right { get; set; }
             public TValue Value { get; set; } = Value;
+            public int SubtreeSize { get; set; } = 1;
         }
     }
 }

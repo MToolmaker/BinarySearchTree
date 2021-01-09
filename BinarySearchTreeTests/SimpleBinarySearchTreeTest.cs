@@ -49,5 +49,11 @@ namespace BinarySearchTreeTests
                 previousKey = currentKey;
             }
         }
+        
+        [Test]
+        public void SizeOperationTest()
+        {
+            Assert.AreEqual(ExpectedNumberToString.Count, NumberToString.Size());
+        }
     }
 }

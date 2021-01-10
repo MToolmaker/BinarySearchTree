@@ -7,10 +7,10 @@ namespace BinarySearchTreeTests
     public class SimpleBinarySearchTreeTest
     {
         private static readonly SimpleBinarySearchTree<int, string> NumberToString =
-            new() {{3, "A"}, {1, "B"}, {2, "C"}};
+            new() {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}};
 
         private static readonly Dictionary<int, string> ExpectedNumberToString =
-            new() {{3, "A"}, {1, "B"}, {2, "C"}};
+            new() {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}};
 
         [SetUp]
         public void Setup()
@@ -82,7 +82,7 @@ namespace BinarySearchTreeTests
         public void TryGetMaxOperationTest()
         {
             Assert.True(NumberToString.TryGetMax(out var max));
-            Assert.AreEqual(3, max);
+            Assert.AreEqual(5, max);
         }
     }
 }

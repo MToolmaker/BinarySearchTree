@@ -12,7 +12,7 @@ namespace BinarySearchTree.SymbolTables
         
         bool TryGet(TKey key, out TValue? value);
 
-        void Delete(TKey key);
+        bool TryDelete(TKey key);
 
         bool Contains(TKey key);
 

@@ -22,7 +22,7 @@ namespace BinarySearchTree.SymbolTables
             return TryGet(_root, key, out value);
         }
 
-        public void Delete(TKey key)
+        public bool TryDelete(TKey key)
         {
             throw new NotImplementedException();
         }

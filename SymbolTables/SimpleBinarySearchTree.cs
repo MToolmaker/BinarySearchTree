@@ -318,9 +318,7 @@ namespace BinarySearchTree.SymbolTables
                 node = node.Right;
             }
         }
-
-
-        // TODO: Add Left and/or Right nodes to constructor if they can be initialized at the record creation moment
+        
         private record Node (TKey Key, TValue Value)
         {
             public Node? Left { get; set; }

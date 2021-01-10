@@ -310,12 +310,13 @@ namespace BinarySearchTree.SymbolTables
 
         private static void TraverseInorder(Node? node, Queue<KeyValuePair<TKey, TValue>> queue)
         {
-            if (node is null) return;
-            TraverseInorder(node.Left, queue);
-            queue.Enqueue(KeyValuePair.Create(node.Key, node.Value));
-            // ReSharper disable once TailRecursiveCall
-            // Let's stick to symmetric recursive inorder traversal for now
-            TraverseInorder(node.Right, queue);
+            while (true)
+            {
+                if (node is null) return;
+                TraverseInorder(node.Left, queue);
+                queue.Enqueue(KeyValuePair.Create(node.Key, node.Value));
+                node = node.Right;
+            }
         }
 
 

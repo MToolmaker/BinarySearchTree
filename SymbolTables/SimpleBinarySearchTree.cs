@@ -135,7 +135,25 @@ namespace BinarySearchTree.SymbolTables
 
         public int Rank(TKey key)
         {
-            throw new NotImplementedException();
+            return Rank(_root, key);
+        }
+
+        private int Rank(Node? node, TKey? key)
+        {
+            while (true)
+            {
+                if (node is null) return 0;
+                switch (node.Key.CompareTo(key))
+                {
+                    case > 0:
+                        node = node.Left;
+                        continue;
+                    case < 0:
+                        return 1 + Size(node.Left) + Rank(node.Right, key);
+                    case 0:
+                        return Size(node.Left);
+                }
+            }
         }
 
         public IOrderedEnumerable<TKey> OrderedKeys()

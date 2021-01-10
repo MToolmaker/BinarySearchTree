@@ -98,5 +98,11 @@ namespace BinarySearchTreeTests
             Assert.True(NumberToString.TryGetCeiling(4, out var floor));
             Assert.AreEqual(5, floor);
         }
+        
+        [Test]
+        public void RankOperationTest()
+        {
+            Assert.AreEqual(3, NumberToString.Rank(4));
+        }
     }
 }

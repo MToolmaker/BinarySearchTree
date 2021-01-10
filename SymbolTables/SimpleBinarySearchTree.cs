@@ -82,7 +82,7 @@ namespace BinarySearchTree.SymbolTables
                             return true;
                         }
 
-                        var minInRightSubtree = GetMin(rightChild);
+                        var minInRightSubtree = GetMin(rightChild).Key;
                         floor = minInRightSubtree.CompareTo(nodeKey) > 0 ? nodeKey : minInRightSubtree;
                         return true;
                     case 0:
@@ -122,7 +122,7 @@ namespace BinarySearchTree.SymbolTables
                             return true;
                         }
 
-                        var maxInLeftSubtree = GetMax(leftChild);
+                        var maxInLeftSubtree = GetMax(leftChild).Key;
                         ceiling = maxInLeftSubtree.CompareTo(nodeKey) > 0 ? maxInLeftSubtree : nodeKey;
                         return true;
                     case 0:
@@ -170,14 +170,14 @@ namespace BinarySearchTree.SymbolTables
                 return false;
             }
 
-            min = GetMin(root);
+            min = GetMin(root).Key;
             return true;
         }
 
-        private static TKey GetMin(Node node)
+        private static Node GetMin(Node node)
         {
             while (node.Left is {} left) node = left;
-            return node.Key;
+            return node;
         }
         
         public bool TryGetMax(out TKey? max)
@@ -189,14 +189,14 @@ namespace BinarySearchTree.SymbolTables
                 return false;
             }
 
-            max = GetMax(root);
+            max = GetMax(root).Key;
             return true;
         }
 
-        private static TKey GetMax(Node node)
+        private static Node GetMax(Node node)
         {
             while (node.Right is { } right) node = right;
-            return node.Key;
+            return node;
         }
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()

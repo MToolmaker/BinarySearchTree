@@ -104,5 +104,17 @@ namespace BinarySearchTreeTests
         {
             Assert.AreEqual(3, NumberToString.Rank(4));
         }
+        
+        [Test]
+        public void TryDeleteOperationTest()
+        {
+            SimpleBinarySearchTree<int, string> bst = new() {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}};
+            foreach (var number in ExpectedNumberToString.Keys)
+            {
+                Assert.True(bst.TryDelete(number));
+                Assert.True(!bst.Contains(number));
+            }
+            Assert.True(bst.IsEmpty());
+        }
     }
 }

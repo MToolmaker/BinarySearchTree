@@ -24,7 +24,49 @@ namespace BinarySearchTree.SymbolTables
 
         public bool TryDelete(TKey key)
         {
-            throw new NotImplementedException();
+            _root = Delete(_root, key, out var deleted);
+            return deleted;
+        }
+
+        private static Node? Delete(Node? node, TKey key, out bool deleted)
+        {
+            if (node is null)
+            {
+                deleted = false;
+                return null;
+            }
+
+            var compareResult = node.Key.CompareTo(key);
+            var leftChild = node.Left;
+            var rightChild = node.Right;
+            switch (compareResult)
+            {
+                case > 0:
+                    node.Left = Delete(leftChild, key, out deleted);
+                    break;
+                case < 0:
+                    node.Right = Delete(rightChild, key, out deleted);
+                    break;
+                case 0:
+                    deleted = true;
+                    if (leftChild is null) return rightChild;
+                    if (rightChild is null) return leftChild;
+                    node = GetMin(rightChild);
+                    node.Right = DeleteMin(rightChild);
+                    node.Left = leftChild;
+                    break;
+            }
+
+            node.SubtreeSize = 1 + Size(leftChild) + Size(rightChild);
+            return node;
+        }
+
+        private static Node? DeleteMin(Node node)
+        {
+            if (node.Left is null) return node.Right;
+            node.Left = DeleteMin(node);
+            node.SubtreeSize = 1 + Size(node.Left) + Size(node.Right);
+            return node;
         }
 
         public bool Contains(TKey key)

@@ -54,7 +54,42 @@ namespace BinarySearchTree.SymbolTables
 
         public bool TryGetFloor(TKey key, out TKey? floor)
         {
-            throw new NotImplementedException();
+            return TryGetFloor(_root, key, out floor);
+        }
+
+        private static bool TryGetFloor(Node? node, TKey key, out TKey? floor)
+        {
+            while (true)
+            {
+                if (node is null)
+                {
+                    floor = default;
+                    return false;
+                }
+                
+                var nodeKey = node.Key;
+                var compareResult = nodeKey.CompareTo(key);
+                switch (compareResult)
+                {
+                    case > 0:
+                        node = node.Left;
+                        continue;
+                    case < 0:
+                        var rightChild = node.Right;
+                        if (rightChild is null)
+                        {
+                            floor = nodeKey;
+                            return true;
+                        }
+
+                        var minInRightSubtree = GetMin(rightChild);
+                        floor = minInRightSubtree.CompareTo(nodeKey) > 0 ? nodeKey : minInRightSubtree;
+                        return true;
+                    case 0:
+                        floor = key;
+                        return true;
+                }
+            }
         }
 
         public bool TryGetCeiling(TKey key, out TKey? ceiling)
@@ -87,7 +122,7 @@ namespace BinarySearchTree.SymbolTables
 
         private static TKey GetMin(Node node)
         {
-            while (node.Left is { } left) node = left;
+            while (node.Left is {} left) node = left;
             return node.Key;
         }
         

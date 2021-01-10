@@ -84,5 +84,12 @@ namespace BinarySearchTreeTests
             Assert.True(NumberToString.TryGetMax(out var max));
             Assert.AreEqual(5, max);
         }
+        
+        [Test]
+        public void TryGetFloorOperationTest()
+        {
+            Assert.True(NumberToString.TryGetFloor(4, out var floor));
+            Assert.AreEqual(3, floor);
+        }
     }
 }

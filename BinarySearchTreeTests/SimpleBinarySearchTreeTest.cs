@@ -91,5 +91,12 @@ namespace BinarySearchTreeTests
             Assert.True(NumberToString.TryGetFloor(4, out var floor));
             Assert.AreEqual(3, floor);
         }
+        
+        [Test]
+        public void TryGetCeilingOperationTest()
+        {
+            Assert.True(NumberToString.TryGetCeiling(4, out var floor));
+            Assert.AreEqual(5, floor);
+        }
     }
 }

@@ -94,7 +94,43 @@ namespace BinarySearchTree.SymbolTables
 
         public bool TryGetCeiling(TKey key, out TKey? ceiling)
         {
-            throw new NotImplementedException();
+            return TryGetCeiling(_root, key, out ceiling);
+        }
+        
+        private static bool TryGetCeiling(Node? node, TKey? key, out TKey? ceiling)
+        {
+            while (true)
+            {
+                if (node is null)
+                {
+                    ceiling = default;
+                    return false;
+                }
+                
+                var nodeKey = node.Key;
+                var compareResult = nodeKey.CompareTo(key);
+                switch (compareResult)
+                {
+                    case < 0:
+                        node = node.Right;
+                        continue;
+                    case > 0:
+                        var leftChild = node.Left;
+                        if (leftChild is null)
+                        {
+                            ceiling = nodeKey;
+                            return true;
+                        }
+
+                        var maxInLeftSubtree = GetMax(leftChild);
+                        ceiling = maxInLeftSubtree.CompareTo(nodeKey) > 0 ? maxInLeftSubtree : nodeKey;
+                        return true;
+                    case 0:
+                        ceiling = key;
+                        return true;
+                }
+            }
+
         }
 
         public int Rank(TKey key)

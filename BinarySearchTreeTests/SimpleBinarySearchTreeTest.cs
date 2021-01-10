@@ -20,18 +20,20 @@ namespace BinarySearchTreeTests
         [Test]
         public void TryGetOperationTest()
         {
-            for (var number = 1; number <= 3; number++)
+            foreach (var number in ExpectedNumberToString.Keys)
             {
-                Assert.True(ExpectedNumberToString.TryGetValue(number, out var expected));
                 Assert.True(NumberToString.TryGet(number, out var actual));
-                Assert.AreEqual(expected, actual);
+                Assert.AreEqual(ExpectedNumberToString[number], actual);
             }
         }
 
         [Test]
         public void ContainsOperationTest()
         {
-            for (var number = 1; number <= 3; number++) Assert.True(NumberToString.Contains(number));
+            foreach (var number in ExpectedNumberToString.Keys)
+            {
+                Assert.True(NumberToString.Contains(number));
+            }
         }
 
         [Test]

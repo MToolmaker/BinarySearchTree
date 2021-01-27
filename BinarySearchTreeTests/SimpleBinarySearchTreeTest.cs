@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using BinarySearchTree.SymbolTables;
 using NUnit.Framework;
 
@@ -9,8 +10,8 @@ namespace BinarySearchTreeTests
         private static readonly SimpleBinarySearchTree<int, string> NumberToString =
             new() {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}};
 
-        private static readonly Dictionary<int, string> ExpectedNumberToString =
-            new() {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}};
+        private static readonly ImmutableDictionary<int, string> ExpectedNumberToString =
+            new Dictionary<int, string> {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}}.ToImmutableDictionary();
 
         [SetUp]
         public void Setup()

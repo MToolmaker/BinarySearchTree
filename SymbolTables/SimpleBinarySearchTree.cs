@@ -125,7 +125,9 @@ namespace BinarySearchTree.SymbolTables
                         }
 
                         var minInRightSubtree = GetMin(rightChild).Key;
-                        floor = minInRightSubtree.CompareTo(nodeKey) > 0 ? nodeKey : minInRightSubtree;
+                        floor = minInRightSubtree.CompareTo(nodeKey) < 0 || minInRightSubtree.CompareTo(key) > 0
+                            ? nodeKey
+                            : minInRightSubtree;
                         return true;
                     case 0:
                         floor = key;

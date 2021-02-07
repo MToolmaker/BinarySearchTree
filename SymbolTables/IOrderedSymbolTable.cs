@@ -19,5 +19,7 @@ namespace BinarySearchTree.SymbolTables
         public bool TryGetMin(out TKey? min);
         
         public bool TryGetMax(out TKey? max);
+
+        public int RangeCount(TKey lo, TKey hi);
     }
 }

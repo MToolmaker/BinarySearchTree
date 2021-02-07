@@ -142,5 +142,19 @@ namespace BinarySearchTreeTests
 
             Assert.True(bst.IsEmpty());
         }
+        
+        [Test]
+        public void RangeCountOperationTest()
+        {
+            foreach (var numberToString in BinarySearchTrees)
+            {
+                Assert.AreEqual(3, numberToString.RangeCount(1, 3));
+                Assert.AreEqual(1, numberToString.RangeCount(4, 5));
+                Assert.AreEqual(1, numberToString.RangeCount(3, 4));
+                Assert.AreEqual(2, numberToString.RangeCount(2, 4));
+                Assert.AreEqual(4, numberToString.RangeCount(0, 7));
+                Assert.AreEqual(0, numberToString.RangeCount(6, 7));
+            }
+        }
     }
 }

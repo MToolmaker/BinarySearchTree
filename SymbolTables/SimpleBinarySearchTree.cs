@@ -237,6 +237,8 @@ namespace BinarySearchTree.SymbolTables
             return true;
         }
 
+        public int RangeCount(TKey lo, TKey hi) => Contains(hi) ? Rank(hi) - Rank(lo) + 1 : Rank(hi) - Rank(lo);
+
         private static Node GetMax(Node node)
         {
             while (node.Right is { } right) node = right;

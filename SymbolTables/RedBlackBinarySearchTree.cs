@@ -100,6 +100,8 @@ namespace BinarySearchTree.SymbolTables
             return true;
         }
 
+        public int RangeCount(TKey lo, TKey hi) => Contains(hi) ? Rank(hi) - Rank(lo) + 1 : Rank(hi) - Rank(lo);
+
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             return OrderedKeyValuePairs().GetEnumerator();

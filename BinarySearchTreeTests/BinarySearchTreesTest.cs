@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -142,6 +143,13 @@ namespace BinarySearchTreeTests
             }
 
             Assert.True(bst.IsEmpty());
+        }
+        
+        [Test]
+        public void TryDeleteOperationForRedBlackIsNotImplementedTest()
+        {
+            RedBlackBinarySearchTree<int, string> bst = new() {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}};
+            Assert.Throws<NotImplementedException>(() => bst.TryDelete(1));
         }
         
         [Test]

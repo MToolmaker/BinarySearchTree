@@ -22,41 +22,7 @@ namespace BinarySearchTree.SymbolTables
 
         public override bool TryDelete(TKey key)
         {
-            Root = Delete(Root, key, out var deleted);
-            return deleted;
-        }
-
-        private static Node? Delete(Node? node, TKey key, out bool deleted)
-        {
-            if (node is null)
-            {
-                deleted = false;
-                return null;
-            }
-
-            var compareResult = node.Key.CompareTo(key);
-            var leftChild = node.Left;
-            var rightChild = node.Right;
-            switch (compareResult)
-            {
-                case > 0:
-                    node.Left = Delete(leftChild, key, out deleted);
-                    break;
-                case < 0:
-                    node.Right = Delete(rightChild, key, out deleted);
-                    break;
-                case 0:
-                    deleted = true;
-                    if (leftChild is null) return rightChild;
-                    if (rightChild is null) return leftChild;
-                    node = GetMin(rightChild);
-                    node.Right = DeleteMin(rightChild);
-                    node.Left = leftChild;
-                    break;
-            }
-
-            node.SubtreeSize = 1 + Size(leftChild) + Size(rightChild);
-            return node;
+            throw new NotImplementedException("Delete operation isn't supported for now");
         }
 
         private static Node? DeleteMin(Node node)

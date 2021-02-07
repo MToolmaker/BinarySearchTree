@@ -100,9 +100,16 @@ namespace BST.SymbolTables
 
         public IEnumerable<KeyValuePair<TKey, TValue>> Range(TKey lo, TKey hi)
         {
+            AssertLowBoundIsLessThanHigh(lo, hi);
             var pairsOrderedByKeyInRange = new Queue<KeyValuePair<TKey, TValue>>();
             TraverseInorderRange(Root, pairsOrderedByKeyInRange, lo, hi);
             return pairsOrderedByKeyInRange;
+        }
+
+        private static void AssertLowBoundIsLessThanHigh(TKey lo, TKey hi)
+        {
+            if (lo.CompareTo(hi) <= 0) return;
+            throw new InvalidOperationException($"Low bound: {lo} is greater then high bound: {hi}");
         }
 
         private static void TraverseInorderRange(TNode? node, Queue<KeyValuePair<TKey, TValue>> queue, TKey lo, TKey hi)

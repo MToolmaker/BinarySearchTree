@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace BinarySearchTree.SymbolTables
+namespace BST.SymbolTables
 {
     [PublicAPI]
     public interface ISymbolTable<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>>

@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
-namespace BinarySearchTree.SymbolTables
+namespace BST.SymbolTables
 {
     [PublicAPI]
     public class RedBlackBinarySearchTree<TKey, TValue> :

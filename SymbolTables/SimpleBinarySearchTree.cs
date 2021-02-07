@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace BinarySearchTree.SymbolTables
+namespace BST.SymbolTables
 {
     [PublicAPI]
     public class SimpleBinarySearchTree<TKey, TValue> :

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 
-namespace BinarySearchTree.SymbolTables
+namespace BST.SymbolTables
 {
     [PublicAPI]
     public interface IOrderedSymbolTable<TKey, TValue> : ISymbolTable<TKey, TValue>

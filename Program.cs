@@ -1,4 +1,4 @@
-﻿namespace BinarySearchTree
+﻿namespace BST
 {
     internal static class Program
     {

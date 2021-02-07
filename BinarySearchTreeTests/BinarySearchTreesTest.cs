@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using BinarySearchTree.SymbolTables;
+using BST.SymbolTables;
 using NUnit.Framework;
 
 namespace BinarySearchTreeTests

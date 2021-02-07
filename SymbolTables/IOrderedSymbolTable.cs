@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 
@@ -21,5 +22,7 @@ namespace BinarySearchTree.SymbolTables
         public bool TryGetMax(out TKey? max);
 
         public int RangeCount(TKey lo, TKey hi);
+        
+        public IEnumerable<KeyValuePair<TKey, TValue>> Range(TKey lo, TKey hi);
     }
 }

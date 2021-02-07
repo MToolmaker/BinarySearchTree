@@ -98,6 +98,25 @@ namespace BinarySearchTree.SymbolTables
             return Contains(hi) ? Rank(hi) - Rank(lo) + 1 : Rank(hi) - Rank(lo);
         }
 
+        public IEnumerable<KeyValuePair<TKey, TValue>> Range(TKey lo, TKey hi)
+        {
+            var pairsOrderedByKeyInRange = new Queue<KeyValuePair<TKey, TValue>>();
+            TraverseInorderRange(Root, pairsOrderedByKeyInRange, lo, hi);
+            return pairsOrderedByKeyInRange;
+        }
+
+        private static void TraverseInorderRange(TNode? node, Queue<KeyValuePair<TKey, TValue>> queue, TKey lo, TKey hi)
+        {
+            if (node is null) return;
+            var key = node.Key;
+            var isLowBoundLessThanKey = lo.CompareTo(key) <= 0;
+            if (isLowBoundLessThanKey) TraverseInorderRange(node.Left, queue, lo, hi);
+            var isKeyLessThanHighBound = key.CompareTo(hi) <= 0;
+            if (isLowBoundLessThanKey && isKeyLessThanHighBound)
+                queue.Enqueue(KeyValuePair.Create(node.Key, node.Value));
+            if (isKeyLessThanHighBound) TraverseInorderRange(node.Right, queue, lo, hi);
+        }
+
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             return OrderedKeyValuePairs().GetEnumerator();

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using BinarySearchTree.SymbolTables;
 using NUnit.Framework;
 
@@ -155,6 +156,45 @@ namespace BinarySearchTreeTests
                 Assert.AreEqual(4, numberToString.RangeCount(0, 7));
                 Assert.AreEqual(0, numberToString.RangeCount(6, 7));
             }
+        }
+        
+        [Test]
+        public void RangeOperationTest()
+        {
+            foreach (var numberToString in BinarySearchTrees)
+            {
+                TestRangeFromTwoToFour(numberToString);
+                TestRangeFromThreeToFour(numberToString);
+                TestRangeFromFourToFour(numberToString);
+                TestRangeFromFourToFive(numberToString);
+            }
+        }
+
+        private static void TestRangeFromFourToFive(IOrderedSymbolTable<int, string> numberToString)
+        {
+            var elementsWithFourToFiveKeys = numberToString.Range(4, 5).ToList();
+            Assert.True(elementsWithFourToFiveKeys.Contains(KeyValuePair.Create(5, "E")));
+            Assert.AreEqual(1, elementsWithFourToFiveKeys.Count);
+        }
+
+        private static void TestRangeFromFourToFour(IOrderedSymbolTable<int, string> numberToString)
+        {
+            Assert.AreEqual(0, numberToString.Range(4, 4).ToList().Count);
+        }
+
+        private static void TestRangeFromThreeToFour(IOrderedSymbolTable<int, string> numberToString)
+        {
+            var elementsWithThreeToFourKeys = numberToString.Range(3, 4).ToList();
+            Assert.True(elementsWithThreeToFourKeys.Contains(KeyValuePair.Create(3, "A")));
+            Assert.AreEqual(1, elementsWithThreeToFourKeys.Count);
+        }
+
+        private static void TestRangeFromTwoToFour(IOrderedSymbolTable<int, string> numberToString)
+        {
+            var elementsWithTwoToFourKeys = numberToString.Range(2, 4).ToList();
+            Assert.True(elementsWithTwoToFourKeys.Contains(KeyValuePair.Create(2, "C")));
+            Assert.True(elementsWithTwoToFourKeys.Contains(KeyValuePair.Create(3, "A")));
+            Assert.AreEqual(2, elementsWithTwoToFourKeys.Count);
         }
     }
 }

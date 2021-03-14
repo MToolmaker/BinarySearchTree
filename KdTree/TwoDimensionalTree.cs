@@ -44,10 +44,7 @@ namespace BST.KdTree
                 : nodeX.CompareTo(x);
         }
 
-        public bool Contains(double x, double y)
-        {
-            return Contains(_root, x, y, PlanePartitioning.Vertical);
-        }
+        public bool Contains(double x, double y) => Contains(_root, x, y, PlanePartitioning.Vertical);
 
         private static bool Contains(Node? node, double x, double y, PlanePartitioning partitioning)
         {
@@ -70,20 +67,11 @@ namespace BST.KdTree
             }
         }
 
-        public bool IsEmpty()
-        {
-            return Size() == 0;
-        }
+        public bool IsEmpty() => Size() == 0;
 
-        public int Size()
-        {
-            return Size(_root);
-        }
+        public int Size() => Size(_root);
 
-        private static int Size(Node? node)
-        {
-            return node?.SubtreeSize ?? 0;
-        }
+        private static int Size(Node? node) => node?.SubtreeSize ?? 0;
 
         [NotNull]
         private IEnumerable<(double, double)> Points()
@@ -178,22 +166,16 @@ namespace BST.KdTree
         private static bool IsRectangle((double, double) p1,
                                         (double, double) p2,
                                         (double, double) p3,
-                                        (double, double) p4)
-        {
-            return IsOrderedRectangle(p1, p2, p3, p4) || IsOrderedRectangle(p2, p3, p1, p4) ||
-                   IsOrderedRectangle(p3, p1, p2, p4);
-        }
+                                        (double, double) p4) =>
+            IsOrderedRectangle(p1, p2, p3, p4) || IsOrderedRectangle(p2, p3, p1, p4) ||
+            IsOrderedRectangle(p3, p1, p2, p4);
 
         private static bool IsOrderedRectangle((double, double) p1, (double, double) p2, (double, double) p3,
-                                               (double, double) p4)
-        {
-            return IsOrthogonal(p1, p2, p3) && IsOrthogonal(p2, p3, p4) && IsOrthogonal(p3, p4, p1);
-        }
+                                               (double, double) p4) =>
+            IsOrthogonal(p1, p2, p3) && IsOrthogonal(p2, p3, p4) && IsOrthogonal(p3, p4, p1);
 
-        private static bool IsOrthogonal((double, double) a, (double, double) b, (double, double) c)
-        {
-            return (b.Item1 - a.Item1) * (b.Item1 - c.Item1) + (b.Item2 - a.Item2) * (b.Item2 - c.Item2) == 0;
-        }
+        private static bool IsOrthogonal((double, double) a, (double, double) b, (double, double) c) =>
+            (b.Item1 - a.Item1) * (b.Item1 - c.Item1) + (b.Item2 - a.Item2) * (b.Item2 - c.Item2) == 0;
 
         public (double, double)? FindNearestPoint(double x, double y)
         {
@@ -291,10 +273,9 @@ namespace BST.KdTree
 
     internal static class PlanePartitioningExtensions
     {
-        public static PlanePartitioning Flip(this PlanePartitioning grade)
-        {
-            return grade == PlanePartitioning.Horizontal ? PlanePartitioning.Vertical : PlanePartitioning.Horizontal;
-        }
+        public static PlanePartitioning Flip(this PlanePartitioning grade) => grade == PlanePartitioning.Horizontal
+            ? PlanePartitioning.Vertical
+            : PlanePartitioning.Horizontal;
     }
 
     internal enum PlanePartitioning

@@ -95,10 +95,7 @@ namespace BST.IntervalTree
             node.SubtreeSize = 1 + Size(node.Left) + Size(node.Right);
         }
 
-        private static int Size(Node? node)
-        {
-            return node?.SubtreeSize ?? 0;
-        }
+        private static int Size(Node? node) => node?.SubtreeSize ?? 0;
 
         private static Node RotateLeft(Node node)
         {
@@ -154,10 +151,7 @@ namespace BST.IntervalTree
             right.Color = Color.Black;
         }
 
-        private static bool IsRed(Node? node)
-        {
-            return node?.Color == Color.Red;
-        }
+        private static bool IsRed(Node? node) => node?.Color == Color.Red;
 
         private enum Color
         {

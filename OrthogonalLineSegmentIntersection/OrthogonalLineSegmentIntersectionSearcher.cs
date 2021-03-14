@@ -61,10 +61,7 @@ namespace BST.OrthogonalLineSegmentIntersection
             throw new InvalidOperationException(message);
         }
 
-        public static Point CreatePointFrom(int x, int y)
-        {
-            return new(x, y);
-        }
+        public static Point CreatePointFrom(int x, int y) => new(x, y);
 
         public static ILine CreateLineFrom(Point a, Point b)
         {

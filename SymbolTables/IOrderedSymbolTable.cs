@@ -16,13 +16,13 @@ namespace BST.SymbolTables
         public int Rank(TKey key);
 
         public IOrderedEnumerable<TKey> OrderedKeys();
-        
+
         public bool TryGetMin(out TKey? min);
-        
+
         public bool TryGetMax(out TKey? max);
 
         public int RangeCount(TKey lo, TKey hi);
-        
+
         public IEnumerable<KeyValuePair<TKey, TValue>> Range(TKey lo, TKey hi);
     }
 }

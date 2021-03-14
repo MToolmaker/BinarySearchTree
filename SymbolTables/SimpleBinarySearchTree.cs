@@ -9,10 +9,15 @@ namespace BST.SymbolTables
         BinarySearchTreeBase<SimpleBinarySearchTree<TKey, TValue>.Node, TKey, TValue>
         where TKey : IComparable<TKey>, IEquatable<TKey>
     {
-        public SimpleBinarySearchTree(IDictionary<TKey, TValue> dictionary) : base(dictionary) {}
+        public SimpleBinarySearchTree(IDictionary<TKey, TValue> dictionary)
+            : base(dictionary)
+        {
+        }
 
-        public SimpleBinarySearchTree() {}
-        
+        public SimpleBinarySearchTree()
+        {
+        }
+
         public override bool TryDelete(TKey key)
         {
             Root = Delete(Root, key, out var deleted);

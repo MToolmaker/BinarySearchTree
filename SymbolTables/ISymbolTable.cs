@@ -9,8 +9,10 @@ namespace BST.SymbolTables
     public interface ISymbolTable<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>>
         where TKey : IEquatable<TKey>
     {
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
         void Add(TKey key, [NotNull] TValue value);
-        
+
         bool TryGet(TKey key, out TValue? value);
 
         bool TryDelete(TKey key);
@@ -20,13 +22,12 @@ namespace BST.SymbolTables
         bool IsEmpty();
 
         int Size();
-        
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         [NotNull]
         IEnumerable<TKey> Keys();
-        
-        [NotNull, ItemNotNull]
+
+        [NotNull]
+        [ItemNotNull]
         IEnumerable<TValue> Values();
     }
 }

@@ -16,14 +16,17 @@ namespace BST.SymbolTables
             Black
         }
 
-        public RedBlackBinarySearchTree(IDictionary<TKey, TValue> dictionary) : base(dictionary) {}
-        
-        public RedBlackBinarySearchTree() {}
-
-        public override bool TryDelete(TKey key)
+        public RedBlackBinarySearchTree(IDictionary<TKey, TValue> dictionary)
+            : base(dictionary)
         {
-            throw new NotImplementedException("Delete operation isn't supported for now");
         }
+
+        public RedBlackBinarySearchTree()
+        {
+        }
+
+        public override bool TryDelete(TKey key) =>
+            throw new NotImplementedException("Delete operation isn't supported for now");
 
         private static Node? DeleteMin(Node node)
         {
@@ -100,10 +103,7 @@ namespace BST.SymbolTables
             right.Color = Color.Black;
         }
 
-        private static bool IsRed(Node? node)
-        {
-            return node?.Color == Color.Red;
-        }
+        private static bool IsRed(Node? node) => node?.Color == Color.Red;
 
         public record Node (TKey Key, TValue Value, Color Color) : INode<Node, TKey, TValue>
         {

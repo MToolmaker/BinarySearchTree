@@ -12,41 +12,29 @@ namespace BST.SymbolTables
     {
         protected TNode? Root;
 
-        protected BinarySearchTreeBase(IDictionary<TKey,TValue> dictionary)
+        protected BinarySearchTreeBase(IDictionary<TKey, TValue> dictionary)
         {
             foreach (var (key, value) in dictionary) Add(key, value);
         }
-        
-        protected BinarySearchTreeBase() {}
-        
+
+        protected BinarySearchTreeBase()
+        {
+        }
+
         public void Add(TKey key, TValue value)
         {
             Root = Add(Root, key, value);
         }
-        
-        protected abstract TNode? Add(TNode? node, TKey key, TValue value);
 
         public abstract bool TryDelete(TKey key);
 
-        public bool TryGet(TKey key, out TValue? value)
-        {
-            return TryGet(Root, key, out value);
-        }
+        public bool TryGet(TKey key, out TValue? value) => TryGet(Root, key, out value);
 
-        public bool Contains(TKey key)
-        {
-            return TryGet(key, out _);
-        }
+        public bool Contains(TKey key) => TryGet(key, out _);
 
-        public bool IsEmpty()
-        {
-            return Size() == 0;
-        }
+        public bool IsEmpty() => Size() == 0;
 
-        public int Size()
-        {
-            return Size(Root);
-        }
+        public int Size() => Size(Root);
 
         public IEnumerable<TKey> Keys()
         {
@@ -58,20 +46,11 @@ namespace BST.SymbolTables
             return OrderedKeyValuePairs().Select(pair => pair.Value);
         }
 
-        public bool TryGetFloor(TKey key, out TKey? floor)
-        {
-            return TryGetFloor(Root, key, out floor);
-        }
+        public bool TryGetFloor(TKey key, out TKey? floor) => TryGetFloor(Root, key, out floor);
 
-        public bool TryGetCeiling(TKey key, out TKey? ceiling)
-        {
-            return TryGetCeiling(Root, key, out ceiling);
-        }
+        public bool TryGetCeiling(TKey key, out TKey? ceiling) => TryGetCeiling(Root, key, out ceiling);
 
-        public int Rank(TKey key)
-        {
-            return Rank(Root, key);
-        }
+        public int Rank(TKey key) => Rank(Root, key);
 
         public IOrderedEnumerable<TKey> OrderedKeys()
         {
@@ -104,10 +83,7 @@ namespace BST.SymbolTables
             return true;
         }
 
-        public int RangeCount(TKey lo, TKey hi)
-        {
-            return Contains(hi) ? Rank(hi) - Rank(lo) + 1 : Rank(hi) - Rank(lo);
-        }
+        public int RangeCount(TKey lo, TKey hi) => Contains(hi) ? Rank(hi) - Rank(lo) + 1 : Rank(hi) - Rank(lo);
 
         public IEnumerable<KeyValuePair<TKey, TValue>> Range(TKey lo, TKey hi)
         {
@@ -116,6 +92,10 @@ namespace BST.SymbolTables
             TraverseInorderRange(Root, pairsOrderedByKeyInRange, lo, hi);
             return pairsOrderedByKeyInRange;
         }
+
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator() => OrderedKeyValuePairs().GetEnumerator();
+
+        protected abstract TNode? Add(TNode? node, TKey key, TValue value);
 
         private static void AssertLowBoundIsLessThanHigh(TKey lo, TKey hi)
         {
@@ -133,11 +113,6 @@ namespace BST.SymbolTables
             if (isLowBoundLessThanKey && isKeyLessThanHighBound)
                 queue.Enqueue(KeyValuePair.Create(node.Key, node.Value));
             if (isKeyLessThanHighBound) TraverseInorderRange(node.Right, queue, lo, hi);
-        }
-
-        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
-        {
-            return OrderedKeyValuePairs().GetEnumerator();
         }
 
         private static bool TryGet(TNode? node, TKey key, out TValue? value)
@@ -189,6 +164,7 @@ namespace BST.SymbolTables
                             floor = nodeKey;
                             return true;
                         }
+
                         if (TryGetFloor(rightChild, key, out floor)) return true;
                         floor = nodeKey;
                         return true;
@@ -223,6 +199,7 @@ namespace BST.SymbolTables
                             ceiling = nodeKey;
                             return true;
                         }
+
                         if (TryGetCeiling(leftChild, key, out ceiling)) return true;
                         ceiling = nodeKey;
                         return true;
@@ -263,10 +240,7 @@ namespace BST.SymbolTables
             return node;
         }
 
-        protected static int Size(TNode? node)
-        {
-            return node?.SubtreeSize ?? 0;
-        }
+        protected static int Size(TNode? node) => node?.SubtreeSize ?? 0;
 
         private Queue<KeyValuePair<TKey, TValue>> OrderedKeyValuePairs()
         {

@@ -25,7 +25,7 @@ namespace BinarySearchTreeTests
             CollectionAssert.Contains(new[] {(0, 9), (1, 5), (10, 12), (11, 15)},
                 intervals.FindIntersection(4, 13));
         }
-        
+
         [Test]
         public void FindIntersectionsOperationTest()
         {

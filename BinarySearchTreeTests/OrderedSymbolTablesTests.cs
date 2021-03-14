@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -7,54 +6,22 @@ using NUnit.Framework;
 
 namespace BinarySearchTreeTests
 {
-    public class BinarySearchTreesTest
+    public class OrderedSymbolTablesTests
     {
         private static readonly ImmutableDictionary<int, string> ExpectedNumberToString =
             new Dictionary<int, string> {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}}.ToImmutableDictionary();
 
-        private static readonly IEnumerable<IOrderedSymbolTable<int, string>> BinarySearchTrees =
+        private static readonly IEnumerable<IOrderedSymbolTable<int, string>> OrderedSymbolTables =
             new IOrderedSymbolTable<int, string>[]
             {
-                new SimpleBinarySearchTree<int, string> (ExpectedNumberToString),
-                new RedBlackBinarySearchTree<int, string> (ExpectedNumberToString),
+                new SimpleBinarySearchTree<int, string>(ExpectedNumberToString),
+                new RedBlackBinarySearchTree<int, string>(ExpectedNumberToString)
             };
-
-        [SetUp]
-        public void Setup()
-        {
-        }
-
-        [Test]
-        public void TryGetOperationTest()
-        {
-            foreach (var numberToString in BinarySearchTrees)
-            foreach (var number in ExpectedNumberToString.Keys)
-            {
-                Assert.True(numberToString.TryGet(number, out var actual));
-                Assert.AreEqual(ExpectedNumberToString[number], actual);
-            }
-        }
-
-        [Test]
-        public void ContainsOperationTest()
-        {
-            foreach (var numberToString in BinarySearchTrees)
-            foreach (var number in ExpectedNumberToString.Keys)
-                Assert.True(numberToString.Contains(number));
-        }
-
-        [Test]
-        public void KeysOperationTest()
-        {
-            foreach (var numberToString in BinarySearchTrees)
-            foreach (var number in numberToString.Keys())
-                Assert.True(ExpectedNumberToString.ContainsKey(number));
-        }
 
         [Test]
         public void OrderedKeysOperationTest()
         {
-            foreach (var numberToString in BinarySearchTrees)
+            foreach (var numberToString in OrderedSymbolTables)
             {
                 var previousKey = -1;
                 foreach (var currentKey in numberToString.OrderedKeys())
@@ -66,40 +33,20 @@ namespace BinarySearchTreeTests
         }
 
         [Test]
-        public void SizeOperationTest()
-        {
-            foreach (var numberToString in BinarySearchTrees)
-                Assert.AreEqual(ExpectedNumberToString.Count, numberToString.Size());
-        }
-
-        [Test]
-        public void ValuesOperationTest()
-        {
-            foreach (var numberToString in BinarySearchTrees)
-            foreach (var @string in numberToString.Values())
-                Assert.True(ExpectedNumberToString.ContainsValue(@string));
-        }
-
-        [Test]
-        public void EmptyOperationTest()
-        {
-            foreach (var numberToString in BinarySearchTrees) Assert.True(!numberToString.IsEmpty());
-        }
-
-        [Test]
         public void TryGetMinOperationTest()
         {
-            foreach (var numberToString in BinarySearchTrees)
+            foreach (var numberToString in OrderedSymbolTables)
             {
                 Assert.True(numberToString.TryGetMin(out var min));
                 Assert.AreEqual(1, min);
             }
         }
 
+
         [Test]
         public void TryGetMaxOperationTest()
         {
-            foreach (var numberToString in BinarySearchTrees)
+            foreach (var numberToString in OrderedSymbolTables)
             {
                 Assert.True(numberToString.TryGetMax(out var max));
                 Assert.AreEqual(5, max);
@@ -109,7 +56,7 @@ namespace BinarySearchTreeTests
         [Test]
         public void TryGetFloorOperationTest()
         {
-            foreach (var numberToString in BinarySearchTrees)
+            foreach (var numberToString in OrderedSymbolTables)
             {
                 Assert.True(numberToString.TryGetFloor(4, out var floor));
                 Assert.AreEqual(3, floor);
@@ -119,7 +66,7 @@ namespace BinarySearchTreeTests
         [Test]
         public void TryGetCeilingOperationTest()
         {
-            foreach (var numberToString in BinarySearchTrees)
+            foreach (var numberToString in OrderedSymbolTables)
             {
                 Assert.True(numberToString.TryGetCeiling(4, out var floor));
                 Assert.AreEqual(5, floor);
@@ -129,33 +76,13 @@ namespace BinarySearchTreeTests
         [Test]
         public void RankOperationTest()
         {
-            foreach (var numberToString in BinarySearchTrees) Assert.AreEqual(3, numberToString.Rank(4));
+            foreach (var numberToString in OrderedSymbolTables) Assert.AreEqual(3, numberToString.Rank(4));
         }
 
-        [Test]
-        public void TryDeleteOperationForSimpleTreeTest()
-        {
-            SimpleBinarySearchTree<int, string> bst = new() {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}};
-            foreach (var number in ExpectedNumberToString.Keys)
-            {
-                Assert.True(bst.TryDelete(number));
-                Assert.True(!bst.Contains(number));
-            }
-
-            Assert.True(bst.IsEmpty());
-        }
-        
-        [Test]
-        public void TryDeleteOperationForRedBlackIsNotImplementedTest()
-        {
-            RedBlackBinarySearchTree<int, string> bst = new() {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}};
-            Assert.Throws<NotImplementedException>(() => bst.TryDelete(1));
-        }
-        
         [Test]
         public void RangeCountOperationTest()
         {
-            foreach (var numberToString in BinarySearchTrees)
+            foreach (var numberToString in OrderedSymbolTables)
             {
                 Assert.AreEqual(3, numberToString.RangeCount(1, 3));
                 Assert.AreEqual(1, numberToString.RangeCount(4, 5));
@@ -165,11 +92,11 @@ namespace BinarySearchTreeTests
                 Assert.AreEqual(0, numberToString.RangeCount(6, 7));
             }
         }
-        
+
         [Test]
         public void RangeOperationTest()
         {
-            foreach (var numberToString in BinarySearchTrees)
+            foreach (var numberToString in OrderedSymbolTables)
             {
                 TestRangeFromTwoToFour(numberToString);
                 TestRangeFromThreeToFour(numberToString);

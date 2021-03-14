@@ -15,8 +15,8 @@ namespace BinarySearchTreeTests
         private static readonly IEnumerable<IOrderedSymbolTable<int, string>> BinarySearchTrees =
             new IOrderedSymbolTable<int, string>[]
             {
-                new SimpleBinarySearchTree<int, string> {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}},
-                new RedBlackBinarySearchTree<int, string> {{3, "A"}, {1, "B"}, {2, "C"}, {5, "E"}}
+                new SimpleBinarySearchTree<int, string> (ExpectedNumberToString),
+                new RedBlackBinarySearchTree<int, string> (ExpectedNumberToString),
             };
 
         [SetUp]

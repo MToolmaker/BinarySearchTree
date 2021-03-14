@@ -177,11 +177,8 @@ namespace BST.SymbolTables
                             floor = nodeKey;
                             return true;
                         }
-
-                        var minInRightSubtree = GetMin(rightChild).Key;
-                        floor = minInRightSubtree.CompareTo(nodeKey) < 0 || minInRightSubtree.CompareTo(key) > 0
-                            ? nodeKey
-                            : minInRightSubtree;
+                        if (TryGetFloor(rightChild, key, out floor)) return true;
+                        floor = nodeKey;
                         return true;
                     case 0:
                         floor = key;
@@ -214,9 +211,8 @@ namespace BST.SymbolTables
                             ceiling = nodeKey;
                             return true;
                         }
-
-                        var maxInLeftSubtree = GetMax(leftChild).Key;
-                        ceiling = maxInLeftSubtree.CompareTo(nodeKey) > 0 ? maxInLeftSubtree : nodeKey;
+                        if (TryGetCeiling(leftChild, key, out ceiling)) return true;
+                        ceiling = nodeKey;
                         return true;
                     case 0:
                         ceiling = key;

@@ -15,7 +15,8 @@ namespace BinarySearchTreeTests
             new ISymbolTable<int, string>[]
             {
                 new SimpleBinarySearchTree<int, string>(ExpectedNumberToString),
-                new RedBlackBinarySearchTree<int, string>(ExpectedNumberToString)
+                new RedBlackBinarySearchTree<int, string>(ExpectedNumberToString),
+                new SeparateChainingHashTable<int, string>(ExpectedNumberToString)
             };
 
         [SetUp]

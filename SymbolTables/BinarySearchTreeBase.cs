@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -127,11 +126,6 @@ namespace BST.SymbolTables
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             return OrderedKeyValuePairs().GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
 
         private static bool TryGet(TNode? node, TKey key, out TValue? value)

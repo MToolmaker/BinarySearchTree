@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
@@ -20,6 +21,8 @@ namespace BST.SymbolTables
 
         int Size();
         
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
         [NotNull]
         IEnumerable<TKey> Keys();
         

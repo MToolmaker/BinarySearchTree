@@ -16,7 +16,8 @@ namespace BinarySearchTreeTests
             {
                 new SimpleBinarySearchTree<int, string>(ExpectedNumberToString),
                 new RedBlackBinarySearchTree<int, string>(ExpectedNumberToString),
-                new SeparateChainingHashTable<int, string>(ExpectedNumberToString)
+                new SeparateChainingHashTable<int, string>(ExpectedNumberToString),
+                new LinearProbingHashTable<int, string>(ExpectedNumberToString)
             };
 
         [SetUp]

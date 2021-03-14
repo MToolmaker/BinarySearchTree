@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
 namespace BST.SymbolTables
 {
     [PublicAPI]
-    public class RedBlackBinarySearchTree<TKey, TValue> :
+    public sealed class RedBlackBinarySearchTree<TKey, TValue> :
         BinarySearchTreeBase<RedBlackBinarySearchTree<TKey, TValue>.Node, TKey, TValue>
         where TKey : IComparable<TKey>, IEquatable<TKey>
     {
@@ -15,10 +16,9 @@ namespace BST.SymbolTables
             Black
         }
 
-        public override void Add(TKey key, TValue value)
-        {
-            Root = Add(Root, key, value);
-        }
+        public RedBlackBinarySearchTree(IDictionary<TKey, TValue> dictionary) : base(dictionary) {}
+        
+        public RedBlackBinarySearchTree() {}
 
         public override bool TryDelete(TKey key)
         {
@@ -33,7 +33,7 @@ namespace BST.SymbolTables
             return node;
         }
 
-        private Node Add(Node? node, TKey key, TValue value)
+        protected override Node Add(Node? node, TKey key, TValue value)
         {
             if (node is null) return new Node(key, value, Root is not null ? Color.Red : Color.Black);
             switch (node.Key.CompareTo(key))

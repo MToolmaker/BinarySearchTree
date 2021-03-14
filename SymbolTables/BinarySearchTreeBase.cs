@@ -12,7 +12,19 @@ namespace BST.SymbolTables
     {
         protected TNode? Root;
 
-        public abstract void Add(TKey key, TValue value);
+        protected BinarySearchTreeBase(IDictionary<TKey,TValue> dictionary)
+        {
+            foreach (var (key, value) in dictionary) Add(key, value);
+        }
+        
+        protected BinarySearchTreeBase() {}
+        
+        public void Add(TKey key, TValue value)
+        {
+            Root = Add(Root, key, value);
+        }
+        
+        protected abstract TNode? Add(TNode? node, TKey key, TValue value);
 
         public abstract bool TryDelete(TKey key);
 

@@ -1,18 +1,18 @@
 using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace BST.SymbolTables
 {
     [PublicAPI]
-    public class SimpleBinarySearchTree<TKey, TValue> :
+    public sealed class SimpleBinarySearchTree<TKey, TValue> :
         BinarySearchTreeBase<SimpleBinarySearchTree<TKey, TValue>.Node, TKey, TValue>
         where TKey : IComparable<TKey>, IEquatable<TKey>
     {
-        public override void Add(TKey key, TValue value)
-        {
-            Root = Add(Root, key, value);
-        }
+        public SimpleBinarySearchTree(IDictionary<TKey, TValue> dictionary) : base(dictionary) {}
 
+        public SimpleBinarySearchTree() {}
+        
         public override bool TryDelete(TKey key)
         {
             Root = Delete(Root, key, out var deleted);
@@ -60,7 +60,7 @@ namespace BST.SymbolTables
             return node;
         }
 
-        private static Node Add(Node? node, TKey key, TValue value)
+        protected override Node Add(Node? node, TKey key, TValue value)
         {
             if (node is null) return new Node(key, value);
             switch (node.Key.CompareTo(key))
